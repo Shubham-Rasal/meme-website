@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Meme</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            max-height: 500px;
+        }
+        button{
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <h1>Random Meme</h1>
+
+    <div class="img-div">
+
+    </div>
+
+    
+    
+
+
+
+    <script>
+        
+        
+        const memeImage = document.createElement('img');
+       async function getMeme(){
+        const meme = await fetch('https://meme-api.herokuapp.com/gimme');
+        const memeJson = await meme.json();
+        console.log(memeJson.url);
+
+        memeImage.src = memeJson.url;
+        memeImage.alt = 'meme';
+        document.querySelector('.img-div').appendChild(memeImage);
+       
+        }
+
+        const button = document.createElement('button');
+        button.innerText = 'Get Meme';
+        button.addEventListener('click', getMeme);
+        document.body.appendChild(button);
+
+
+        
+    </script>
+</body>
+</html>
